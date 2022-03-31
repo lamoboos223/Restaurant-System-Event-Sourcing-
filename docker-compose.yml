@@ -57,6 +57,9 @@ services:
       - POSTGRES_PASSWORD=postgres
     ports:
       - 5432:5432
-  # restaurant-app:
-  #   container_name: restaurant-app
-  #   build: .
+  restaurant-app:
+    container_name: restaurant-app
+    hostname: restaurant-app
+    build: .
+    ports:
+      - 8080:8080
