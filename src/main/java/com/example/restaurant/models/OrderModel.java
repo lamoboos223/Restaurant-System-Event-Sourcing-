@@ -1,82 +1,69 @@
 package com.example.restaurant.models;
 
+
+import org.springframework.context.annotation.Primary;
+
+import javax.persistence.*;
+
+
+@Table(name = "Order", schema = "public")
+@Entity
 public class OrderModel {
 
-    private int id;
+    @Id()
+    @Column(name="Id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY) //this is to configure the id to be auto increment
+    private long id;
+
+    @Column(name = "Name")
     private String name;
+
+    @Column(name = "Total")
     private double total;
+
+    @Column(name = "Status")
     private String status;
-  
 
 
     public OrderModel() {
-
     }
 
-
-    public OrderModel(int id , String name , double total ,String status ) {
-        super();
-        this.id = id;
+    public OrderModel(String name , double total , String status ) {
         this.name = name;
-        this.total = total;  
-        this.status = status;  
-    
+        this.total = total;
+        this.status = status;
     }
-    /**
-     * @return int return the id
-     */
-    public int getId() {
+
+
+    public long getId() {
         return id;
     }
 
-    /**
-     * @param id the id to set
-     */
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
-    /**
-     * @return String return the name
-     */
     public String getName() {
         return name;
     }
 
-    /**
-     * @param name the name to set
-     */
     public void setName(String name) {
         this.name = name;
     }
 
-    /**
-     * @return double return the total
-     */
     public double getTotal() {
         return total;
     }
 
-    /**
-     * @param total the total to set
-     */
     public void setTotal(double total) {
         this.total = total;
     }
 
-
-    /**
-     * @return String return the status
-     */
     public String getStatus() {
         return status;
     }
 
-    /**
-     * @param status the status to set
-     */
     public void setStatus(String status) {
         this.status = status;
     }
-
 }
