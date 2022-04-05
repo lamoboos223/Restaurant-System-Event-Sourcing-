@@ -1,8 +1,6 @@
 package com.example.restaurant.models;
 
 
-import org.springframework.context.annotation.Primary;
-
 import javax.persistence.*;
 
 

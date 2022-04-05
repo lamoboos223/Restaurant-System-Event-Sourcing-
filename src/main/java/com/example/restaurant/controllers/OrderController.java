@@ -5,13 +5,10 @@ import com.example.restaurant.models.OrderModel;
 import com.example.restaurant.repositories.OrderRepo;
 import com.example.restaurant.services.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 
 @RestController
@@ -21,24 +18,36 @@ public class OrderController {
     @Autowired
     private OrderService orderService;
 
-    @Autowired
-    private OrderRepo repo;
-
-
+    // Create a new order
     @PostMapping(path = "/orders")
     public OrderModel addOrder(@RequestBody OrderModel orderModel){
+//        return orderService.addOrder(new OrderModel(orderModel.getName(), orderModel.getTotal(), orderModel.getStatus()));
         return orderService.addOrder(orderModel);
-        // return this.repo.save(orderModel);
+
     }
 
+    // Get all orders
     @GetMapping("/orders")
     public List<OrderModel> getAllOrder(){
-        return this.repo.findAll();
+        return orderService.getOrder();
     }
 
-    @GetMapping("/orderss")
-    public String getAllOrder1(){
-        return "Orders controller is working";
+    // Get order by id
+    @GetMapping("/orders/{id}")
+    public Optional<OrderModel> getOrderById(@PathVariable("id") long id){
+        return orderService.getOrderById(id);
+    }
+
+    // Update the order
+    @PutMapping("/orders/{id}")
+    public OrderModel updateOrder(@RequestBody OrderModel orderModel ,@PathVariable("id") long id ) {
+        return orderService.updateOrder(orderModel,id);
+    }
+
+    // Update the order
+    @DeleteMapping("/orders/{id}")
+    public void deleteOrder(@PathVariable("id") long id ) {
+        orderService.deleteOrder(id);
     }
 
 
