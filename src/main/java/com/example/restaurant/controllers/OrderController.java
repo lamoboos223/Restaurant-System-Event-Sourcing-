@@ -11,9 +11,15 @@ import java.util.List;
 import java.util.Optional;
 
 
+// TODO: since all the methods uses /order put this mapping on the class instead of the method
 @RestController
 @CrossOrigin
 public class OrderController {
+
+//    TODO: use ResponseEntity Class to form the response you
+//     will return to user instead or returning the model orderModel as is
+//    https://www.baeldung.com/spring-response-entity
+
 
     @Autowired
     private OrderService orderService;
@@ -38,6 +44,7 @@ public class OrderController {
         return orderService.getOrderById(id);
     }
 
+//    TODO: no need for id
     // Update the order
     @PutMapping("/orders/{id}")
     public OrderModel updateOrder(@RequestBody OrderModel orderModel ,@PathVariable("id") long id ) {

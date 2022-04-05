@@ -30,11 +30,13 @@ public class OrderService {
             return orderRepo.findById(id);
         }
         else  {
+//            TODO: use try and catch
             throw new RuntimeException("Order not found");
         }
     }
 
     public OrderModel updateOrder(OrderModel orderModel,Long id) {
+//        TODO: use getOrderById instead of orderRepo since getOrderById handles the exception
         OrderModel order = orderRepo.findById(id).get();
             order.setName(orderModel.getName());
             order.setTotal(orderModel.getTotal());
@@ -43,6 +45,7 @@ public class OrderService {
     }
 
     public void deleteOrder(Long id) {
+//        TODO: use getOrderById instead of orderRepo since getOrderById handles the exception
         OrderModel order = orderRepo.findById(id).get();
         if (order != null) {
             orderRepo.delete(order);
