@@ -57,6 +57,14 @@ services:
       - POSTGRES_PASSWORD=postgres
     ports:
       - "5432:5432"
+  redis:
+    container_name: redis
+    hostname: redis
+    image: redis:latest
+    ports:
+      - "6379:6379"
+
+
 #  restaurant-app:
 #    container_name: restaurant-app
 #    hostname: restaurant-app
@@ -64,4 +72,10 @@ services:
 #      context: .
 #      dockerfile: Dockerfile
 #    ports:
-#      - 8080:8080
+#      - "8080:8080"
+#    depends_on:
+#      - postgres
+#      - broker
+#      - redis
+#      - schema-registry
+
