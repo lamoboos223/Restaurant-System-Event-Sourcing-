@@ -37,7 +37,7 @@ public class OrderService {
         Optional<OrderModel> orderById = orderRepo.findById(id);
         if (orderById.isPresent()) {
             return orderRepo.findById(id);
-//            TODO: use this exception throwing ^_^
+//            TODO: use this exception throwing ^_^.
 //            return orderRepo.findById(id).orElseThrow(RuntimeException::new);
         }
         else  {
