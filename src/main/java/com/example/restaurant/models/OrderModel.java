@@ -2,11 +2,12 @@ package com.example.restaurant.models;
 
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 
 @Table(name = "Order", schema = "public")
 @Entity
-public class OrderModel {
+public class OrderModel implements Serializable {
 
     @Id()
     @Column(name="Id")
