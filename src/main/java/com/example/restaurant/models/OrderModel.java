@@ -1,11 +1,28 @@
 package com.example.restaurant.models;
 
 
-import javax.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import java.math.BigDecimal;
 
 
 @Table(name = "Order", schema = "public")
 @Entity
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class OrderModel {
 
     @Id()
@@ -17,51 +34,9 @@ public class OrderModel {
     private String name;
 
     @Column(name = "Total")
-    private double total;
+    private BigDecimal total;
 
     @Column(name = "Status")
     private String status;
 
-
-    public OrderModel() {
-    }
-
-    public OrderModel(String name , double total , String status ) {
-        this.name = name;
-        this.total = total;
-        this.status = status;
-    }
-
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public double getTotal() {
-        return total;
-    }
-
-    public void setTotal(double total) {
-        this.total = total;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
 }
