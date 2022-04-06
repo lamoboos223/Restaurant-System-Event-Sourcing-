@@ -4,12 +4,15 @@ package com.example.restaurant.services;
 import com.example.restaurant.models.OrderModel;
 import com.example.restaurant.repositories.OrderRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
+@EnableCaching
 public class OrderService {
 
     @Autowired
@@ -20,10 +23,12 @@ public class OrderService {
         return orderRepo.save(orderModel);
     }
 
+    @Cacheable(value = "Order")
     public List<OrderModel> getOrder(){
         return orderRepo.findAll();
     }
 
+    @Cacheable(value = "Order")
     public Optional<OrderModel> getOrderById(Long id) {
         Optional<OrderModel> orderById = orderRepo.findById(id);
         if (orderById.isPresent()) {
