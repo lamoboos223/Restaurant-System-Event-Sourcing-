@@ -1,3 +1,6 @@
+![Untitled Diagram drawio](https://user-images.githubusercontent.com/35597031/162061568-38c51e65-1802-4e6d-8548-d9e64984b033.png)
+
+
 ## USAGE
 
 To start the project components: zookeeper, kafka, schema registry, postgress and restaurant service
