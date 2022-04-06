@@ -41,7 +41,6 @@ public class OrderService {
 //            return orderRepo.findById(id).orElseThrow(RuntimeException::new);
         }
         else  {
-//            TODO: use try and catch
             throw new RuntimeException("Order not found");
         }
     }
@@ -56,7 +55,7 @@ public class OrderService {
             return orderRepo.save(order);
     }
 
-    @CacheEvict(value = "Order")
+    @CacheEvict(value = "Order", key = "#id")
     public void deleteOrder(Long id) {
 //        TODO: use getOrderById instead of orderRepo since getOrderById handles the exception
         OrderModel order = orderRepo.findById(id).get();
