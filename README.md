@@ -1,5 +1,4 @@
-![Untitled Diagram drawio](https://user-images.githubusercontent.com/35597031/162061568-38c51e65-1802-4e6d-8548-d9e64984b033.png)
-
+![Untitled Diagram drawio (1)](https://user-images.githubusercontent.com/35597031/162061650-16b86bbe-c078-41e3-a4a4-af29c1bcd0cd.png)
 
 ## USAGE
 
