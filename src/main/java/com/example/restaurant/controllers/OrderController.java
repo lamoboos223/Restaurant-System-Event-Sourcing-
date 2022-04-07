@@ -8,6 +8,8 @@ import com.example.restaurant.response.OrderResponse;
 import com.example.restaurant.serviceimpl.OrderServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,7 +31,9 @@ public class OrderController {
 
     @PostMapping()
     public ResponseEntity<OrderResponse> addOrder(@RequestBody OrderRequest orderRequest){
-        return ResponseEntity.ok(orderServiceImpl.addOrder(OrderMapper.orderRequestToOrderModel(orderRequest)));
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .contentType(MediaType.APPLICATION_JSON)
+                .body(orderServiceImpl.addOrder(OrderMapper.orderRequestToOrderModel(orderRequest)));
 
     }
 
