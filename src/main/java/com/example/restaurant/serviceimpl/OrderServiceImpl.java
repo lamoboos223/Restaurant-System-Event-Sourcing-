@@ -23,44 +23,38 @@ public class OrderServiceImpl implements OrderService {
     private final OrderRepo orderRepo;
 
     @Override
-    public OrderResponse addOrder(OrderModel orderModel){
+    public OrderResponse addOrder(OrderModel orderModel) {
         return OrderMapper.orderToResponse(orderRepo.save(orderModel));
     }
 
     @Override
     @Cacheable(value = "Order")
-    public List<OrderModel> getOrder(){
+    public List<OrderModel> getOrder() {
         return orderRepo.findAll();
     }
 
     @Override
     @Cacheable(value = "Order")
     public OrderModel getOrderById(long id) {
-        return orderRepo.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,String.format(" id Resource %s not found ",id)));
+        return orderRepo.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, String.format(" id Resource %s not found ", id)));
     }
 
     @Override
     @CachePut(value = "Order")
-    public OrderModel updateOrder(OrderModel orderModel,long id) {
-//        TODO: use getOrderById instead of orderRepo since getOrderById handles the exception
-        OrderModel order = orderRepo.findById(id).get();
-            order.setName(orderModel.getName());
-            order.setTotal(orderModel.getTotal());
-            order.setStatus(orderModel.getStatus());
-            return orderRepo.save(order);
+    public OrderModel updateOrder(OrderModel orderModel, long id) {
+        OrderModel order = getOrderById(id);
+        order.setName(orderModel.getName());
+        order.setTotal(orderModel.getTotal());
+        order.setStatus(orderModel.getStatus());
+        return orderRepo.save(order);
     }
 
     @Override
     @CacheEvict(value = "Order")
     public void deleteOrder(long id) {
-//        TODO: use getOrderById instead of orderRepo since getOrderById handles the exception
-        OrderModel order = orderRepo.findById(id).get();
-        if (order != null) {
-            orderRepo.delete(order);
-        }
+        OrderModel order = getOrderById(id);
+        orderRepo.delete(order);
     }
-
-
 
 
 }
