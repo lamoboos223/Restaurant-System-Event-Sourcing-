@@ -16,15 +16,10 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 
-// TODO: since all the methods uses /order put this mapping on the class instead of the method
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/orders")
 public class OrderController {
-
-//    TODO: use ResponseEntity Class to form the response you
-//     will return to user instead or returning the model orderModel as is
-//    https://www.baeldung.com/spring-response-entity
 
     @Autowired
     private final OrderServiceImpl orderServiceImpl;
@@ -59,6 +54,4 @@ public class OrderController {
     public void deleteOrder(@PathVariable("id") long id ) {
         orderServiceImpl.deleteOrder(id);
     }
-
-
 }
