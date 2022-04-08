@@ -8,7 +8,7 @@ import org.springframework.boot.autoconfigure.data.redis.RedisAutoConfiguration;
 import org.springframework.cache.annotation.EnableCaching;
 
 
-//@EnableCaching
+@EnableCaching
 @SpringBootApplication
 @ImportAutoConfiguration(classes = {
 		CacheAutoConfiguration.class,
