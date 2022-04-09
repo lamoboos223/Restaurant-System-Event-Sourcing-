@@ -11,9 +11,9 @@ public interface OrderService {
 
     List<OrderModel> getOrder();
 
-    OrderModel getOrderById(long id);
+    OrderModel getOrderById(int id);
 
-    OrderModel updateOrder(OrderModel orderModel, long id);
+    OrderModel updateOrder(OrderModel orderModel, int id);
 
-    void deleteOrder(long id);
+    void deleteOrder(int id);
 }

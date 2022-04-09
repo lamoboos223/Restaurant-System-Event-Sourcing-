@@ -39,19 +39,19 @@ public class OrderController {
 
 
     @GetMapping("/{id}")
-    public OrderResponse getOrderById(@PathVariable("id") long id){
+    public OrderResponse getOrderById(@PathVariable("id") int id){
         return OrderMapper.orderToResponse(orderServiceImpl.getOrderById(id));
     }
 
 
     @PutMapping("/{id}")
-    public OrderModel updateOrder(@RequestBody OrderModel orderModel , @PathVariable("id") long id ) {
+    public OrderModel updateOrder(@RequestBody OrderModel orderModel , @PathVariable("id") int id ) {
         return orderServiceImpl.updateOrder(orderModel,id);
     }
 
 
     @DeleteMapping("/{id}")
-    public void deleteOrder(@PathVariable("id") long id ) {
+    public void deleteOrder(@PathVariable("id") int id ) {
         orderServiceImpl.deleteOrder(id);
     }
 }

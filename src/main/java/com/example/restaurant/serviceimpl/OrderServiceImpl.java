@@ -35,13 +35,13 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     @Cacheable(value = "Order")
-    public OrderModel getOrderById(long id) {
+    public OrderModel getOrderById(int id) {
         return orderRepo.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, String.format(" id Resource %s not found ", id)));
     }
 
     @Override
     @CachePut(value = "Order")
-    public OrderModel updateOrder(OrderModel orderModel, long id) {
+    public OrderModel updateOrder(OrderModel orderModel, int id) {
         OrderModel order = getOrderById(id);
         order.setName(orderModel.getName());
         order.setTotal(orderModel.getTotal());
@@ -51,7 +51,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     @CacheEvict(value = "Order")
-    public void deleteOrder(long id) {
+    public void deleteOrder(int id) {
         OrderModel order = getOrderById(id);
         orderRepo.delete(order);
     }

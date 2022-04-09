@@ -1,0 +1,27 @@
+{
+  "type": "record",
+  "namespace": "com.example.restaurant.avro.schema",
+  "name": "orders",
+  "fields": [
+    {
+      "name": "id",
+      "type": ["int", "null"],
+      "default": 1
+    },
+    {
+      "name": "name",
+      "type": "string",
+      "default": "name"
+    },
+    {
+      "name": "total",
+      "type": "double",
+      "default": 100
+    },
+    {
+      "name": "status",
+      "type": "string",
+      "default": "approved"
+    }
+  ]
+}

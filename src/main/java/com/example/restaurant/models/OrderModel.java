@@ -20,13 +20,13 @@ public class OrderModel implements Serializable {
     @Id()
     @Column(name="Id")
     @GeneratedValue(strategy = GenerationType.IDENTITY) //this is to configure the id to be auto increment
-    private long id;
+    private int id;
 
     @Column(name = "Name")
     private String name;
 
     @Column(name = "Total")
-    private BigDecimal total;
+    private double total;
 
     @Column(name = "Status")
     private String status;

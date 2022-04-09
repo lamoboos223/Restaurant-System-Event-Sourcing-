@@ -5,7 +5,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.math.BigDecimal;
 
 @Getter
 @Setter
@@ -14,6 +13,6 @@ import java.math.BigDecimal;
 public class OrderRequest {
 
     private String name;
-    private BigDecimal total;
+    private double total;
     private String status;
 }

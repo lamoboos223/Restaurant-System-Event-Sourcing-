@@ -54,7 +54,12 @@ services:
     restart: always
     hostname: postgres
     environment:
+      - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=restaurantdb
+#    command:
+#      - psql -U postgres
+#      - CREATE DATABASE restaurantdb;
     ports:
       - "5432:5432"
   redis:
