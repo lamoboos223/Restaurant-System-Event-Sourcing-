@@ -15,6 +15,12 @@ To shutdown the components execute the following command.
 
 ---
 
+### Avro
+
+worth to mention, to generate avro schema execute `mvn clean install`
+
+---
+
 ## Resources
 [kafka installation via docker](https://github.com/confluentinc/cp-all-in-one/blob/6.1.1-post/cp-all-in-one-community/docker-compose.yml#L46)
 

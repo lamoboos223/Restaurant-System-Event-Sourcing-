@@ -3,6 +3,11 @@ FROM maven:3.6.0-jdk-11-slim AS build
 COPY src /home/app/src
 COPY pom.xml /home/app
 WORKDIR /home/app
+# generate avro schema
+ENTRYPOINT mvn clean install
+# copy avro schema
+COPY src /home/app/src
+# generate jar
 ENTRYPOINT mvn clean package
 
 # Run Jar

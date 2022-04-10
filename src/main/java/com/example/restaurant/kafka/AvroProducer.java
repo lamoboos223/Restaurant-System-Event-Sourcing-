@@ -30,13 +30,13 @@ public class AvroProducer {
             @Override
             public void onFailure(Throwable ex) {
 
-                logger.warn(String.format("Failed sending Message %s to topic %s", order, topic));
+                logger.warn(String.format("Failed publishing Message %s to topic %s", order, topic));
                 logger.error(ex.getMessage());
             }
 
             @Override
             public void onSuccess(SendResult<String, orders> result) {
-                logger.info(String.format("Successful sending Message %s to topic %s", order, topic));
+                logger.info(String.format("Successful publishing Message %s to topic %s", order, topic));
             }
         });
 
