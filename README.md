@@ -5,8 +5,6 @@
 To start the project components: zookeeper, kafka, schema registry, postgress and restaurant service
 you should execute the following command first.
 
-`sh start.sh`
-
 `docker-compose up -d`
 
 To shutdown the components execute the following command.
