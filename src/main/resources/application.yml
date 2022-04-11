@@ -3,25 +3,23 @@ avro:
     name: restaurant-orders
 spring:
   kafka:
-#    consumer:
-#      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-#      value-deserializer: io.confluent.kafka.serializers.KafkaAvroDeserializer
-#      group-id: restaurant-group
-#      auto-offset-reset: earliest
-#      specific-avro-reader: true
-#      bootstrap-servers: 127.0.0.1:9092
-#      properties:
-#        schema:
-#          registry:
-#            url: http://127.0.0.1:8081
+    properties:
+      specific:
+        avro:
+          reader: true
+      schema:
+        registry:
+          url: http://localhost:8081
     producer:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: io.confluent.kafka.serializers.KafkaAvroSerializer
       bootstrap-servers: 127.0.0.1:9092
-      properties:
-        schema:
-          registry:
-            url: http://127.0.0.1:8081
+    consumer:
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: io.confluent.kafka.serializers.KafkaAvroDeserializer
+      group-id: restaurant-group
+      auto-offset-reset: earliest
+      bootstrap-servers: 127.0.0.1:9092
 
 
   jpa:

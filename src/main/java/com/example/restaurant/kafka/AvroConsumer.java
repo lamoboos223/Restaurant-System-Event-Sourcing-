@@ -13,7 +13,7 @@ public class AvroConsumer {
 
     Logger logger = LoggerFactory.getLogger(AvroConsumer.class);
 
-//    @KafkaListener(topics = "restaurant-orders")
+    @KafkaListener(topics = "#{'${avro.topic.name}'}")
     public void subscribe(orders order) throws IOException {
         logger.info(String.format("Consumed message -> %s", order));
 
