@@ -62,6 +62,9 @@ services:
 #      - CREATE DATABASE restaurantdb;
     ports:
       - "5432:5432"
+    volumes:
+      - db-data:/var/lib/postgresql/data
+
   redis:
     container_name: redis
     hostname: redis
@@ -84,3 +87,6 @@ services:
 #      - redis
 #      - schema-registry
 
+
+volumes:
+  db-data:
