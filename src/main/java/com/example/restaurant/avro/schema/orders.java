@@ -13,8 +13,8 @@ import org.apache.avro.message.SchemaStore;
 @SuppressWarnings("all")
 @org.apache.avro.specific.AvroGenerated
 public class orders extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
-  private static final long serialVersionUID = 1111552469986105285L;
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"orders\",\"namespace\":\"com.example.restaurant.avro.schema\",\"fields\":[{\"name\":\"id\",\"type\":[\"int\",\"null\"],\"default\":1},{\"name\":\"name\",\"type\":\"string\",\"default\":\"name\"},{\"name\":\"total\",\"type\":\"double\",\"default\":100},{\"name\":\"status\",\"type\":\"string\",\"default\":\"approved\"}]}");
+  private static final long serialVersionUID = -6655161248576151998L;
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"orders\",\"namespace\":\"com.example.restaurant.avro.schema\",\"fields\":[{\"name\":\"name\",\"type\":\"string\",\"default\":\"name\"},{\"name\":\"total\",\"type\":\"double\",\"default\":100},{\"name\":\"status\",\"type\":\"string\",\"default\":\"approved\"}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
 
   private static SpecificData MODEL$ = new SpecificData();
@@ -51,7 +51,6 @@ public class orders extends org.apache.avro.specific.SpecificRecordBase implemen
     return DECODER.decode(b);
   }
 
-  @Deprecated public java.lang.Integer id;
   @Deprecated public java.lang.CharSequence name;
   @Deprecated public double total;
   @Deprecated public java.lang.CharSequence status;
@@ -65,13 +64,11 @@ public class orders extends org.apache.avro.specific.SpecificRecordBase implemen
 
   /**
    * All-args constructor.
-   * @param id The new value for id
    * @param name The new value for name
    * @param total The new value for total
    * @param status The new value for status
    */
-  public orders(java.lang.Integer id, java.lang.CharSequence name, java.lang.Double total, java.lang.CharSequence status) {
-    this.id = id;
+  public orders(java.lang.CharSequence name, java.lang.Double total, java.lang.CharSequence status) {
     this.name = name;
     this.total = total;
     this.status = status;
@@ -81,10 +78,9 @@ public class orders extends org.apache.avro.specific.SpecificRecordBase implemen
   // Used by DatumWriter.  Applications should not call.
   public java.lang.Object get(int field$) {
     switch (field$) {
-    case 0: return id;
-    case 1: return name;
-    case 2: return total;
-    case 3: return status;
+    case 0: return name;
+    case 1: return total;
+    case 2: return status;
     default: throw new org.apache.avro.AvroRuntimeException("Bad index");
     }
   }
@@ -93,28 +89,11 @@ public class orders extends org.apache.avro.specific.SpecificRecordBase implemen
   @SuppressWarnings(value="unchecked")
   public void put(int field$, java.lang.Object value$) {
     switch (field$) {
-    case 0: id = (java.lang.Integer)value$; break;
-    case 1: name = (java.lang.CharSequence)value$; break;
-    case 2: total = (java.lang.Double)value$; break;
-    case 3: status = (java.lang.CharSequence)value$; break;
+    case 0: name = (java.lang.CharSequence)value$; break;
+    case 1: total = (java.lang.Double)value$; break;
+    case 2: status = (java.lang.CharSequence)value$; break;
     default: throw new org.apache.avro.AvroRuntimeException("Bad index");
     }
-  }
-
-  /**
-   * Gets the value of the 'id' field.
-   * @return The value of the 'id' field.
-   */
-  public java.lang.Integer getId() {
-    return id;
-  }
-
-  /**
-   * Sets the value of the 'id' field.
-   * @param value the value to set.
-   */
-  public void setId(java.lang.Integer value) {
-    this.id = value;
   }
 
   /**
@@ -197,7 +176,6 @@ public class orders extends org.apache.avro.specific.SpecificRecordBase implemen
   public static class Builder extends org.apache.avro.specific.SpecificRecordBuilderBase<orders>
     implements org.apache.avro.data.RecordBuilder<orders> {
 
-    private java.lang.Integer id;
     private java.lang.CharSequence name;
     private double total;
     private java.lang.CharSequence status;
@@ -213,21 +191,17 @@ public class orders extends org.apache.avro.specific.SpecificRecordBase implemen
      */
     private Builder(com.example.restaurant.avro.schema.orders.Builder other) {
       super(other);
-      if (isValidValue(fields()[0], other.id)) {
-        this.id = data().deepCopy(fields()[0].schema(), other.id);
+      if (isValidValue(fields()[0], other.name)) {
+        this.name = data().deepCopy(fields()[0].schema(), other.name);
         fieldSetFlags()[0] = true;
       }
-      if (isValidValue(fields()[1], other.name)) {
-        this.name = data().deepCopy(fields()[1].schema(), other.name);
+      if (isValidValue(fields()[1], other.total)) {
+        this.total = data().deepCopy(fields()[1].schema(), other.total);
         fieldSetFlags()[1] = true;
       }
-      if (isValidValue(fields()[2], other.total)) {
-        this.total = data().deepCopy(fields()[2].schema(), other.total);
+      if (isValidValue(fields()[2], other.status)) {
+        this.status = data().deepCopy(fields()[2].schema(), other.status);
         fieldSetFlags()[2] = true;
-      }
-      if (isValidValue(fields()[3], other.status)) {
-        this.status = data().deepCopy(fields()[3].schema(), other.status);
-        fieldSetFlags()[3] = true;
       }
     }
 
@@ -237,61 +211,18 @@ public class orders extends org.apache.avro.specific.SpecificRecordBase implemen
      */
     private Builder(com.example.restaurant.avro.schema.orders other) {
             super(SCHEMA$);
-      if (isValidValue(fields()[0], other.id)) {
-        this.id = data().deepCopy(fields()[0].schema(), other.id);
+      if (isValidValue(fields()[0], other.name)) {
+        this.name = data().deepCopy(fields()[0].schema(), other.name);
         fieldSetFlags()[0] = true;
       }
-      if (isValidValue(fields()[1], other.name)) {
-        this.name = data().deepCopy(fields()[1].schema(), other.name);
+      if (isValidValue(fields()[1], other.total)) {
+        this.total = data().deepCopy(fields()[1].schema(), other.total);
         fieldSetFlags()[1] = true;
       }
-      if (isValidValue(fields()[2], other.total)) {
-        this.total = data().deepCopy(fields()[2].schema(), other.total);
+      if (isValidValue(fields()[2], other.status)) {
+        this.status = data().deepCopy(fields()[2].schema(), other.status);
         fieldSetFlags()[2] = true;
       }
-      if (isValidValue(fields()[3], other.status)) {
-        this.status = data().deepCopy(fields()[3].schema(), other.status);
-        fieldSetFlags()[3] = true;
-      }
-    }
-
-    /**
-      * Gets the value of the 'id' field.
-      * @return The value.
-      */
-    public java.lang.Integer getId() {
-      return id;
-    }
-
-    /**
-      * Sets the value of the 'id' field.
-      * @param value The value of 'id'.
-      * @return This builder.
-      */
-    public com.example.restaurant.avro.schema.orders.Builder setId(java.lang.Integer value) {
-      validate(fields()[0], value);
-      this.id = value;
-      fieldSetFlags()[0] = true;
-      return this;
-    }
-
-    /**
-      * Checks whether the 'id' field has been set.
-      * @return True if the 'id' field has been set, false otherwise.
-      */
-    public boolean hasId() {
-      return fieldSetFlags()[0];
-    }
-
-
-    /**
-      * Clears the value of the 'id' field.
-      * @return This builder.
-      */
-    public com.example.restaurant.avro.schema.orders.Builder clearId() {
-      id = null;
-      fieldSetFlags()[0] = false;
-      return this;
     }
 
     /**
@@ -308,9 +239,9 @@ public class orders extends org.apache.avro.specific.SpecificRecordBase implemen
       * @return This builder.
       */
     public com.example.restaurant.avro.schema.orders.Builder setName(java.lang.CharSequence value) {
-      validate(fields()[1], value);
+      validate(fields()[0], value);
       this.name = value;
-      fieldSetFlags()[1] = true;
+      fieldSetFlags()[0] = true;
       return this;
     }
 
@@ -319,7 +250,7 @@ public class orders extends org.apache.avro.specific.SpecificRecordBase implemen
       * @return True if the 'name' field has been set, false otherwise.
       */
     public boolean hasName() {
-      return fieldSetFlags()[1];
+      return fieldSetFlags()[0];
     }
 
 
@@ -329,7 +260,7 @@ public class orders extends org.apache.avro.specific.SpecificRecordBase implemen
       */
     public com.example.restaurant.avro.schema.orders.Builder clearName() {
       name = null;
-      fieldSetFlags()[1] = false;
+      fieldSetFlags()[0] = false;
       return this;
     }
 
@@ -347,9 +278,9 @@ public class orders extends org.apache.avro.specific.SpecificRecordBase implemen
       * @return This builder.
       */
     public com.example.restaurant.avro.schema.orders.Builder setTotal(double value) {
-      validate(fields()[2], value);
+      validate(fields()[1], value);
       this.total = value;
-      fieldSetFlags()[2] = true;
+      fieldSetFlags()[1] = true;
       return this;
     }
 
@@ -358,7 +289,7 @@ public class orders extends org.apache.avro.specific.SpecificRecordBase implemen
       * @return True if the 'total' field has been set, false otherwise.
       */
     public boolean hasTotal() {
-      return fieldSetFlags()[2];
+      return fieldSetFlags()[1];
     }
 
 
@@ -367,7 +298,7 @@ public class orders extends org.apache.avro.specific.SpecificRecordBase implemen
       * @return This builder.
       */
     public com.example.restaurant.avro.schema.orders.Builder clearTotal() {
-      fieldSetFlags()[2] = false;
+      fieldSetFlags()[1] = false;
       return this;
     }
 
@@ -385,9 +316,9 @@ public class orders extends org.apache.avro.specific.SpecificRecordBase implemen
       * @return This builder.
       */
     public com.example.restaurant.avro.schema.orders.Builder setStatus(java.lang.CharSequence value) {
-      validate(fields()[3], value);
+      validate(fields()[2], value);
       this.status = value;
-      fieldSetFlags()[3] = true;
+      fieldSetFlags()[2] = true;
       return this;
     }
 
@@ -396,7 +327,7 @@ public class orders extends org.apache.avro.specific.SpecificRecordBase implemen
       * @return True if the 'status' field has been set, false otherwise.
       */
     public boolean hasStatus() {
-      return fieldSetFlags()[3];
+      return fieldSetFlags()[2];
     }
 
 
@@ -406,7 +337,7 @@ public class orders extends org.apache.avro.specific.SpecificRecordBase implemen
       */
     public com.example.restaurant.avro.schema.orders.Builder clearStatus() {
       status = null;
-      fieldSetFlags()[3] = false;
+      fieldSetFlags()[2] = false;
       return this;
     }
 
@@ -415,10 +346,9 @@ public class orders extends org.apache.avro.specific.SpecificRecordBase implemen
     public orders build() {
       try {
         orders record = new orders();
-        record.id = fieldSetFlags()[0] ? this.id : (java.lang.Integer) defaultValue(fields()[0]);
-        record.name = fieldSetFlags()[1] ? this.name : (java.lang.CharSequence) defaultValue(fields()[1]);
-        record.total = fieldSetFlags()[2] ? this.total : (java.lang.Double) defaultValue(fields()[2]);
-        record.status = fieldSetFlags()[3] ? this.status : (java.lang.CharSequence) defaultValue(fields()[3]);
+        record.name = fieldSetFlags()[0] ? this.name : (java.lang.CharSequence) defaultValue(fields()[0]);
+        record.total = fieldSetFlags()[1] ? this.total : (java.lang.Double) defaultValue(fields()[1]);
+        record.status = fieldSetFlags()[2] ? this.status : (java.lang.CharSequence) defaultValue(fields()[2]);
         return record;
       } catch (java.lang.Exception e) {
         throw new org.apache.avro.AvroRuntimeException(e);

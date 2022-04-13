@@ -4,11 +4,6 @@
   "name": "orders",
   "fields": [
     {
-      "name": "id",
-      "type": ["int", "null"],
-      "default": 1
-    },
-    {
       "name": "name",
       "type": "string",
       "default": "name"

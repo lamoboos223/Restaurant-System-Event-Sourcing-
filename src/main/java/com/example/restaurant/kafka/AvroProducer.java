@@ -24,7 +24,7 @@ public class AvroProducer {
     private KafkaTemplate<String, orders> kafkaTemplate;
 
     public void publish(orders order){
-        ListenableFuture<SendResult<String, orders>> future = kafkaTemplate.send(topic, String.valueOf(order.getId()), order);
+        ListenableFuture<SendResult<String, orders>> future = kafkaTemplate.send(topic, order);
 
         future.addCallback(new ListenableFutureCallback<SendResult<String, orders>>() {
             @Override
