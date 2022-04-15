@@ -50,6 +50,7 @@ services:
     
   postgres:
     container_name: postgres
+    #container_name: postgres-kafta
     image: postgres:latest
     restart: always
     hostname: postgres
