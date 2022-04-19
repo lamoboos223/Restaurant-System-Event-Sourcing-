@@ -35,3 +35,7 @@ spring:
     username: postgres
     url: jdbc:postgresql://127.0.0.1:5432/restaurantdb
     continue-on-error: 'true'
+okta:
+  oauth2:
+    audience: api://default
+    issuer: https://dev-96351051.okta.com/oauth2/default
