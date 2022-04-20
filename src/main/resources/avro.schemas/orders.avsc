@@ -1,22 +1,57 @@
 {
   "type": "record",
   "namespace": "com.example.restaurant.avro.schema",
-  "name": "orders",
+  "name": "OrderAvro",
   "fields": [
     {
-      "name": "name",
-      "type": "string",
-      "default": "name"
+      "name": "takeAway",
+      "type": "boolean",
+      "default": false
     },
     {
-      "name": "total",
-      "type": "double",
-      "default": 100
+      "name": "items",
+      "default": [],
+      "type": {
+        "type": "array",
+        "items": {
+          "name": "ItemAvro",
+          "type": "record",
+          "fields": [
+            {
+              "name": "id",
+              "type": "int"
+            },
+            {
+              "name": "name",
+              "type": "string"
+            },
+            {
+              "name": "price",
+              "type": "double"
+            }
+          ]
+        }
+      }
     },
     {
       "name": "status",
       "type": "string",
-      "default": "approved"
+      "default": "PENDING"
+    },
+    {
+      "name": "total",
+      "type": "double",
+      "default": 0.00
+    },
+    {
+      "name": "vat",
+      "type": "double",
+      "default": 0.00
+    },
+    {
+      "name": "timestamp",
+      "type": "string",
+      "default": "0000.00.00.00.00.00"
     }
   ]
 }

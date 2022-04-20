@@ -1,8 +1,6 @@
 package com.example.restaurant.controllers;
 
 
-
-import com.example.restaurant.mapper.OrderMapper;
 import com.example.restaurant.models.OrderModel;
 import com.example.restaurant.request.OrderRequest;
 import com.example.restaurant.response.OrderResponse;
@@ -37,8 +35,9 @@ public class OrderController {
 
 
     @GetMapping("/{id}")
-    public OrderResponse getOrderById(@PathVariable("id") int id){
-        return OrderMapper.orderToResponse(orderServiceImpl.getOrderById(id));
+    public OrderModel getOrderById(@PathVariable("id") int id){
+        return orderServiceImpl.getOrderById(id);
+//        return OrderMapper.orderModelToOrderResponse(orderServiceImpl.getOrderById(id));
     }
 
 
