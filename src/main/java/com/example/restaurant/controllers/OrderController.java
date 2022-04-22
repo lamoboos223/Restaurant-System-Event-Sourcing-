@@ -1,7 +1,9 @@
 package com.example.restaurant.controllers;
 
 
+import com.example.restaurant.models.EventTypes;
 import com.example.restaurant.models.OrderModel;
+import com.example.restaurant.models.OrderStatus;
 import com.example.restaurant.request.OrderRequest;
 import com.example.restaurant.response.OrderResponse;
 import com.example.restaurant.serviceimpl.OrderServiceImpl;
@@ -42,8 +44,21 @@ public class OrderController {
 
 
     @PutMapping("/{id}")
-    public OrderModel updateOrder(@RequestBody OrderModel orderModel , @PathVariable("id") int id ) {
-        return orderServiceImpl.updateOrder(orderModel,id);
+    public OrderModel updateOrder(@RequestBody OrderRequest orderRequest , @PathVariable("id") int id ) {
+        return orderServiceImpl.updateOrder(orderRequest,id);
+    }
+
+    @PatchMapping("/cancel/{id}")
+    public OrderModel cancelOrder(@PathVariable("id") int id ) {
+        return orderServiceImpl.updateOrder(id, OrderStatus.CANCELLED, EventTypes.ORDER_CANCELLED);
+    }
+    @PatchMapping("/served/{id}")
+    public OrderModel servedOrder(@PathVariable("id") int id ) {
+        return orderServiceImpl.updateOrder(id, OrderStatus.SERVED, EventTypes.ORDER_SERVED);
+    }
+    @PatchMapping("/accept/{id}")
+    public OrderModel acceptOrder(@PathVariable("id") int id ) {
+        return orderServiceImpl.updateOrder(id, OrderStatus.SERVING, EventTypes.ORDER_SERVING);
     }
 
 

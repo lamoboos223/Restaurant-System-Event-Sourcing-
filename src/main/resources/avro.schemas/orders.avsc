@@ -4,6 +4,11 @@
   "name": "OrderAvro",
   "fields": [
     {
+      "name": "eventType",
+      "type": "string",
+      "default": "ORDER_CREATED"
+    },
+    {
       "name": "takeAway",
       "type": "boolean",
       "default": false

@@ -4,7 +4,9 @@ package com.example.restaurant.serviceimpl;
 import com.example.restaurant.avro.schema.OrderAvro;
 import com.example.restaurant.kafka.AvroProducer;
 import com.example.restaurant.mapper.OrderMapper;
+import com.example.restaurant.models.EventTypes;
 import com.example.restaurant.models.OrderModel;
+import com.example.restaurant.models.OrderStatus;
 import com.example.restaurant.repository.OrderRepo;
 import com.example.restaurant.request.OrderRequest;
 import com.example.restaurant.service.OrderService;
@@ -15,7 +17,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -37,6 +41,7 @@ public class OrderServiceImpl implements OrderService {
     public void addOrder(OrderRequest orderRequest) {
         OrderModel orderModel = OrderMapper.orderRequestToOrderModel(orderRequest);
         OrderAvro orderAvro = OrderMapper.OrderModelToOrderAvro(orderModel);
+        orderAvro.setEventType(String.valueOf(EventTypes.ORDER_CREATED));
         avroProducer.publish(orderAvro);
     }
 
@@ -52,38 +57,55 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    @Cacheable(value = "Order")
     public OrderModel getOrderById(int id) {
-        OrderModel orderModel = orderRepo.findById(id).get();
-
-        OrderModel orderModel1 =  OrderModel.builder()
-                .id(orderModel.getId())
-                .takeAway(orderModel.isTakeAway())
-                .items(orderModel.getItems())
-                .status(String.valueOf(orderModel.getStatus()))
-                .total(orderModel.getTotal())
-                .vat(orderModel.getVat())
-                .timestamp(orderModel.getTimestamp())
-                .build();
-        logger.warn(orderModel1.toString());
-        return orderModel1;
-//        return orderRepo.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, String.format("id Resource %s not found ", id)));
+        return orderRepo.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,
+                        String.format("id Resource %s not found", id)));
     }
 
     @Override
     @CachePut(value = "Order")
-    public OrderModel updateOrder(OrderModel orderModel, int id) {
-//        OrderModel order = getOrderById(id);
-//        order.setName(orderModel.getName());
-//        order.setTotal(orderModel.getTotal());
-//        order.setStatus(orderModel.getStatus());
-//        return orderRepo.save(order);
-        return orderModel;
+    public OrderModel updateOrder(OrderRequest orderRequest, int id) {
+        OrderModel orderModel = OrderMapper.orderRequestToOrderModel(orderRequest);
+        OrderModel order = getOrderById(id);
+
+        order.setTakeAway(orderModel.isTakeAway());
+        order.setItems(orderModel.getItems());
+        order.setTotal(orderModel.getTotal());
+        order.setVat(orderModel.getVat());
+        order.setStatus(String.valueOf(OrderStatus.PENDING));
+        order.setTimestamp(orderModel.getTimestamp());
+
+        OrderAvro orderAvro = OrderMapper.OrderModelToOrderAvro(orderModel);
+        orderAvro.setEventType(String.valueOf(EventTypes.ORDER_UPDATED));
+        avroProducer.publish(orderAvro);
+
+        return orderRepo.save(order);
     }
 
     @Override
     @CacheEvict(value = "Order")
     public void deleteOrder(int id) {
-        OrderModel order = getOrderById(id);
-        orderRepo.delete(order);
+        OrderModel orderModel = getOrderById(id);
+
+        OrderAvro orderAvro = OrderMapper.OrderModelToOrderAvro(orderModel);
+        orderAvro.setEventType(String.valueOf(EventTypes.ORDER_DELETED));
+        avroProducer.publish(orderAvro);
+
+        orderRepo.delete(orderModel);
+    }
+
+    @Override
+    @CachePut(value = "Order")
+    public OrderModel updateOrder(int id, OrderStatus orderStatus, EventTypes eventTypes) {
+        OrderModel orderModel = getOrderById(id);
+
+        OrderAvro orderAvro = OrderMapper.OrderModelToOrderAvro(orderModel);
+        orderAvro.setEventType(String.valueOf(eventTypes));
+        avroProducer.publish(orderAvro);
+
+        orderModel.setStatus(String.valueOf(orderStatus));
+        return orderModel;
     }
 }
