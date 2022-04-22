@@ -1,8 +1,9 @@
 package com.example.restaurant.service;
 
+import com.example.restaurant.models.EventTypes;
 import com.example.restaurant.models.OrderModel;
+import com.example.restaurant.models.OrderStatus;
 import com.example.restaurant.request.OrderRequest;
-import com.example.restaurant.response.OrderResponse;
 
 import java.util.List;
 
@@ -24,7 +25,10 @@ public interface OrderService {
 
     OrderModel getOrderById(int id);
 
-    OrderModel updateOrder(OrderModel orderModel, int id);
+    OrderModel updateOrder(OrderRequest orderRequest, int id);
 
     void deleteOrder(int id);
+
+    OrderModel updateOrder(int id, OrderStatus orderStatus, EventTypes eventTypes);
+
 }

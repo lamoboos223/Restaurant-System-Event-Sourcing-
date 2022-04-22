@@ -1,9 +1,12 @@
 package com.example.restaurant.request;
 
+import com.example.restaurant.models.Item;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.List;
 
 
 @Getter
@@ -11,8 +14,6 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class OrderRequest {
-
-    private String name;
-    private double total;
-    private String status;
+    private boolean takeAway;
+    private List<Item> items;
 }

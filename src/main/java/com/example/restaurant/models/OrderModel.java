@@ -5,7 +5,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.math.BigDecimal;
+import java.util.List;
 
 
 @Table(name = "Order", schema = "public")
@@ -15,20 +15,33 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@ToString
 public class OrderModel implements Serializable {
 
     @Id()
-    @Column(name="Id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY) //this is to configure the id to be auto increment
+    @Column(name="id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "Name")
-    private String name;
+    @Column(name = "takeAway")
+    private boolean takeAway;
 
-    @Column(name = "Total")
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "order_items", joinColumns = @JoinColumn(name = "order_id"), inverseJoinColumns = @JoinColumn(name = "item_id"))
+    private List<Item> items;
+
+
+    @Column(name = "total")
     private double total;
 
-    @Column(name = "Status")
+    @Column(name = "vat")
+    private double vat;
+
+    @Column(name = "timestamp")
+    private String timestamp;
+
+    @Column(name = "status")
     private String status;
 
 }
