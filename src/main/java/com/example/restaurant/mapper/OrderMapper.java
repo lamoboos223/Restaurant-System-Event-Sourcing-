@@ -7,17 +7,16 @@ import com.example.restaurant.models.OrderModel;
 import com.example.restaurant.models.OrderStatus;
 import com.example.restaurant.request.OrderRequest;
 import com.example.restaurant.response.OrderResponse;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+@Slf4j
 public class OrderMapper {
 
-    static Logger logger = LoggerFactory.getLogger(OrderMapper.class);
 
     public static OrderModel orderRequestToOrderModel(OrderRequest orderRequest) {
         double total = 0;

@@ -11,8 +11,7 @@ import com.example.restaurant.repository.OrderRepo;
 import com.example.restaurant.request.OrderRequest;
 import com.example.restaurant.service.OrderService;
 import lombok.RequiredArgsConstructor;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
@@ -25,10 +24,8 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class OrderServiceImpl implements OrderService {
-
-    Logger logger = LoggerFactory.getLogger(OrderServiceImpl.class);
-
 
     @Autowired
     private final OrderRepo orderRepo;

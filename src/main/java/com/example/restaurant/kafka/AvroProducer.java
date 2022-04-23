@@ -2,8 +2,7 @@ package com.example.restaurant.kafka;
 
 
 import com.example.restaurant.avro.schema.OrderAvro;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.core.KafkaTemplate;
@@ -13,10 +12,10 @@ import org.springframework.util.concurrent.ListenableFuture;
 import org.springframework.util.concurrent.ListenableFutureCallback;
 
 @Service
+@Slf4j
 public class AvroProducer {
 
 
-    Logger logger = LoggerFactory.getLogger(AvroProducer.class);
     @Value("${avro.topic.name}")
     private String topic;
 
@@ -30,13 +29,13 @@ public class AvroProducer {
         future.addCallback(new ListenableFutureCallback<SendResult<String, OrderAvro>>() {
             @Override
             public void onFailure(Throwable ex) {
-                logger.warn(String.format("Failed publishing Message %s to topic %s", orderAvro, topic));
-                logger.error(ex.getMessage());
+                log.warn(String.format("Failed publishing Message %s to topic %s", orderAvro, topic));
+                log.error(ex.getMessage());
             }
 
             @Override
             public void onSuccess(SendResult<String, OrderAvro> result) {
-                logger.info(String.format("Produced Message -> %s to topic %s", orderAvro, topic));
+                log.info(String.format("Produced Message -> %s to topic %s", orderAvro, topic));
             }
         });
     }
