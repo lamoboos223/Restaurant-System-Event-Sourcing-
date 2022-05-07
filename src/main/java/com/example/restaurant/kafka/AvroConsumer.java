@@ -30,7 +30,9 @@ public class AvroConsumer {
          * applying event driven architecture using one operation which is
          * adding new order
          */
-        if(String.valueOf(orderAvro.getEventType()).equals(EventTypes.ORDER_CREATED))
+
+        if(String.valueOf(orderAvro.getEventType()).equals(String.valueOf(EventTypes.ORDER_CREATED))) {
             orderServiceImpl.addOrder(orderModel);
+        }
     }
 }
