@@ -59,7 +59,7 @@
 					"response": []
 				},
 				{
-					"name": "http://127.0.0.1:8080/api/v1/orders",
+					"name": "Add Order",
 					"request": {
 						"method": "POST",
 						"header": [
@@ -102,17 +102,8 @@
 					"request": {
 						"method": "PATCH",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"takeAway\": false,\r\n    \"items\": [\r\n        {\r\n            \"name\": \"chips\",\r\n            \"price\": \"10\"\r\n        }\r\n    ]\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
 						"url": {
-							"raw": "http://127.0.0.1:8080/api/v1/orders/accept/3",
+							"raw": "http://127.0.0.1:8080/api/v1/orders/accept/1",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -126,7 +117,7 @@
 								"v1",
 								"orders",
 								"accept",
-								"3"
+								"1"
 							]
 						}
 					},
@@ -182,7 +173,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://127.0.0.1:8080/api/v1/orders/served/3",
+							"raw": "http://127.0.0.1:8080/api/v1/orders/served/1",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -196,7 +187,7 @@
 								"v1",
 								"orders",
 								"served",
-								"3"
+								"1"
 							]
 						}
 					},
@@ -320,6 +311,34 @@
 						"default",
 						"v1",
 						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Deed",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"entityId\": 123,\r\n    \"referenceNumber\": 123,\r\n    \"deedNumbers\": [\r\n        123456789012,\r\n        198765432131\r\n    ],\r\n    \"restateIdentitys\": [\r\n        12345678901234,\r\n        12345678900987\r\n    ],\r\n    \"requestTypeId\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/moj/v1/deeds",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"moj",
+						"v1",
+						"deeds"
 					]
 				}
 			},
